@@ -1,5 +1,6 @@
 <?php namespace Kodeine\Metable;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as BaseCollection;
@@ -346,7 +347,7 @@ trait Metable
         }
 
         // if model table has the column named to the key
-        if ( \Schema::hasColumn($this->getTable(), $key) ) {
+        if ( Capsule::schema()->hasColumn($this->getTable(), $key) ) {
             parent::setAttribute($key, $value);
             return;
         }
